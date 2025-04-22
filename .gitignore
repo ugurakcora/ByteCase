@@ -1,0 +1,19 @@
+# Shopify theme develop tarafından oluşturulan dosyalar
+.shopify-cli.yml
+.env
+
+# Geçici ve build dosyaları
+node_modules/
+.DS_Store
+*.log
+tmp/
+.cache/
+
+# Shopify ve tema dosyaları
+config/settings_data.json
+
+# IDE dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo 
