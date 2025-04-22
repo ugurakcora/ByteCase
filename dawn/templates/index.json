@@ -1,0 +1,9 @@
+{
+  "sections": {
+    "all-carousel": {
+      "type": "all-carousel",
+      "settings": {}
+    }
+  },
+  "order": ["all-carousel"]
+}

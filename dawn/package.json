@@ -1,0 +1,19 @@
+{
+  "name": "dawn-theme-tailwind",
+  "version": "1.0.0",
+  "description": "Dawn Shopify theme with Tailwind CSS",
+  "scripts": {
+    "build": "npx tailwindcss -i ./assets/tailwind.css -o ./assets/theme.css --minify",
+    "watch": "npx tailwindcss -i ./assets/tailwind.css -o ./assets/theme.css --watch",
+    "dev": "npx tailwindcss -i ./assets/tailwind.css -o ./assets/theme.css --watch"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.4",
+    "swiper": "^11.2.6"
+  }
+}

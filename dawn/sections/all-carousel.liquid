@@ -1,0 +1,189 @@
+<!-- Swiper.js -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+{% assign collection = collections['homepage-items'] %}
+<section class="relative flex flex-wrap md:flex-wrap md:overflow-x-hidden md:h-auto lg:flex-nowrap lg:h-screen">
+  <!-- Left Column - Image -->
+  <div class="md:w-full lg:w-1/2 ">
+    <img src="{{ 'bg.png' | asset_url }}" alt="Image" class="md:h-full md:w-full lg:w-full lg:h-full object-cover" />
+  </div>
+
+  <!-- Right Column - Product Slider -->
+  <div class="lg:w-1/2 md:w-full md:-mt-96 md:ml-20 lg:mt-20 text-continer">
+    <div class="md:max-w-md">
+      <h2 class="text-3xl lg:text-black font-extrabold mb-4 max-w-md md:text-white">
+        {{ section.settings.heading }}
+      </h2>
+      <p class="mb-5 max-w-lg leading-7 font-normal text-base text-customGray lg:block md:hidden">
+        {{ section.settings.description }}
+      </p>
+      <a href="{{ section.settings.button_link }}" class="underline decoration-2 underline-offset-8 font-black text-sm leading-tight align-text-left border-none mt-5 link md:text-white lg:text-black">
+        {{ section.settings.button_label }}
+      </a>
+    </div>
+
+    <!-- Swiper Slider -->
+    <div class="swiper mt-9 overflow-auto scroll-smooth overflow-x-hidden">
+      <div class="swiper-wrapper">
+        {% for product in collection.products %}
+          <div class="swiper-slide">
+            <div class="product-card" data-product-id="{{ product.id }}">
+              <a href="{{ product.url }}" class="product-link">
+                <div class="product-images">
+                  {% for variant in product.variants %}
+                    <img 
+                      src="{{ variant.image | default: product.images[0] | img_url: 'large' }}" 
+                      alt="{{ product.title }} - {{ variant.option1 }}" 
+                      class="w-full mt-5 h-auto transition-transform duration-300 hover:scale-105 product-image {% if forloop.first %}active{% else %}hidden{% endif %}" 
+                      data-variant-id="{{ variant.id }}"
+                      data-color="{{ variant.option1 }}"
+                    />
+                  {% endfor %}
+                </div>
+                <div class="text-left text-sm mt-2">{{ product.title }}</div>
+                <div class="flex justify-between mt-2 flex-wrap md:flex-col lg:flex-row">
+                  <div class="text-left text-sm width product-prices">
+                    {% for variant in product.variants %}
+                      <span class="variant-price {% if forloop.first %}active{% else %}hidden{% endif %}" data-variant-id="{{ variant.id }}" data-color="{{ variant.option1 }}">
+                        {{ variant.price | money }}
+                      </span>
+                    {% endfor %}
+                  </div>
+                  <div class="flex space-x-2 mt-1 width">
+                    {% for variant in product.variants %}
+                      <div class="relative">
+                        <div class="w-3 h-3 rounded-full cursor-pointer mt-1 color-swatch {% if forloop.first %}selected-swatch{% endif %}" 
+                             style="background-color: {{ variant.option1 }}" 
+                             data-variant-id="{{ variant.id }}"
+                             data-color="{{ variant.option1 }}"
+                             data-product-id="{{ product.id }}">
+                          <input type="radio" name="color-{{ product.id }}" value="{{ variant.option1 }}" class="absolute inset-0 opacity-0 cursor-pointer" {% if forloop.first %}checked{% endif %}>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Add Navigation -->
+      <div class="swiper-button-next" style="--swiper-navigation-size: 20px"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const swiper = new Swiper(".swiper", {
+      slidesPerView: 1,
+      spaceBetween: 10,
+      navigation: {
+        nextEl: ".swiper-button-next",
+      },
+      breakpoints: {
+        320: {
+          slidesPerView: 2.25,
+          spaceBetween: 10,
+        },
+        1024: {
+          slidesPerView: 2.5,
+          spaceBetween: 40,
+        },
+      },
+    });
+    
+    // Renk seçimi için
+    const colorRadios = document.querySelectorAll('.color-swatch input[type="radio"]');
+    colorRadios.forEach(radio => {
+      radio.addEventListener('change', function() {
+        const productId = this.parentElement.getAttribute('data-product-id');
+        const selectedColor = this.value;
+        const selectedVariantId = this.parentElement.getAttribute('data-variant-id');
+        
+        // Önce aynı ürün içindeki tüm radio butonlardan seçimi kaldır
+        const productRadios = document.querySelectorAll(`input[name="${this.name}"]`);
+        productRadios.forEach(r => {
+          r.parentElement.classList.remove('selected-swatch');
+        });
+        
+        // Seçili olana sınıf ekle
+        this.parentElement.classList.add('selected-swatch');
+        
+        // Ürün kartını bul
+        const productCard = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+        if (productCard) {
+          // Görselleri güncelle - seçili renge ait görseli göster, diğerlerini gizle
+          const images = productCard.querySelectorAll('.product-image');
+          images.forEach(img => {
+            if (img.getAttribute('data-color') === selectedColor) {
+              img.classList.remove('hidden');
+              img.classList.add('active');
+            } else {
+              img.classList.add('hidden');
+              img.classList.remove('active');
+            }
+          });
+          
+          // Fiyatları güncelle - seçili varyanta ait fiyatı göster, diğerlerini gizle
+          const prices = productCard.querySelectorAll('.variant-price');
+          prices.forEach(price => {
+            if (price.getAttribute('data-color') === selectedColor) {
+              price.classList.remove('hidden');
+              price.classList.add('active');
+            } else {
+              price.classList.add('hidden');
+              price.classList.remove('active');
+            }
+          });
+        }
+      });
+    });
+    
+    // İlk yüklemede seçili olanları işaretle
+    const checkedRadios = document.querySelectorAll('.color-swatch input[type="radio"]:checked');
+    checkedRadios.forEach(radio => {
+      radio.parentElement.classList.add('selected-swatch');
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "All Carousel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Başlık",
+      "default": "Everyday items, we have something to suit every occasion."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Açıklama",
+      "default": "At suspendisse augue lectus arcu, accumsan ut sit posuere vitae sit tincidunt semper eu proin leo gravida cursus."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Buton Metni",
+      "default": "Shop All Everyday Items"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Buton Linki"
+    }
+  ],
+  "presets": [
+    {
+      "name": "All Carousel"
+    }
+  ]
+}
+{% endschema %}
+

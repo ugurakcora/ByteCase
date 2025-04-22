@@ -1,0 +1,17 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_background }}">
+    <title>{{ 'gift_card.issued.title' | t }}</title>
+    {{ content_for_header }}
+  </head>
+  <body>
+    <div class="gift-card">
+      <p>{{ 'gift_card.issued.subtext' | t }}</p>
+    </div>
+  </body>
+</html> 
