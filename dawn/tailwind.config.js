@@ -6,6 +6,8 @@ module.exports = {
     './snippets/*.liquid',
     './templates/*.liquid',
     './templates/customers/*.liquid',
+    './assets/*.{js,jsx,ts,tsx}',
+    './**/*.{js,jsx,ts,tsx,vue,liquid}',
   ],
   theme: {
     screens: {

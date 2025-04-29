@@ -1,9 +1,13 @@
 {
   "sections": {
-    "all-carousel": {
-      "type": "all-carousel",
-      "settings": {}
+    "shop": {
+      "type": "shop",
+      "settings": {
+        "custom_heading": "Smarten up your work look or throw on a blazer with jeans for the weekend",
+        "product_name": "Saffiano Leather Bag 2005",
+        "product_price": "€199,95"
+      }
     }
   },
-  "order": ["all-carousel"]
+  "order": ["shop"]
 }

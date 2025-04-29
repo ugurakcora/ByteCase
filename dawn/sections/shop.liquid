@@ -1,0 +1,140 @@
+<section class="flex justify-center items-center min-h-screen bg-white text-center p-8 lg:mt-20">
+  <!-- Desktop Version -->
+  <div class="hidden lg:flex gap-[9.5rem] w-full max-w-7xl">
+    <div class="flex flex-col flex-1 gap-4">
+      <div class="max-w-[30rem] text-left ml-10">
+        <h2 class="mb-4 text-[30px] font-black">{{ section.settings.custom_heading }}</h2>
+        <a href="#" class="inline-block mt-12 mb-24 py-3 px-6 bg-black text-white uppercase text-sm font-thin no-underline tracking-wide cursor-pointer hover:bg-gray-800">
+          Shop Now <span class="ml-2 text-[1.2rem] align-middle">➔</span>
+        </a>
+      </div>
+      <div>
+        <img src="{{ section.settings.left_image | img_url: 'large' }}" alt="Left Image" class="w-full h-auto object-cover" />
+      </div>
+    </div>
+
+    <div class="flex flex-col flex-1">
+      <div class="relative">
+        <img src="{{ section.settings.right_image | img_url: 'large' }}" alt="Right Image" class="w-full h-auto object-cover" />
+        <div class="absolute right-6 bottom-8 bg-white px-4 py-3 shadow-md text-sm flex items-center gap-3 max-w-[350px] z-20 border border-[#e1e1e1]">
+          <div class="text-left">
+            <span class="font-bold">{{ section.settings.product_name }}</span><br />
+            <span>{{ section.settings.product_price }}</span>
+          </div>
+          <img src="{{ section.settings.product_image | img_url: 'small' }}" alt="{{ section.settings.product_name }}" class="w-[50px] h-[50px] object-cover" />
+        </div>
+      </div>
+
+      <div class="max-w-[30rem] m-16 text-left">
+        <p class="text-[1.5rem] leading-[1.5] mb-4">
+          At suspendisse augue lectus arcu, accumsan ut sit posuere vitae sit tincidunt semper eu proin leo gravida cursus.
+        </p>
+        <a href="#" class="underline text-black">Read More</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Version -->
+  <div class="block lg:hidden w-full">
+    <div class="w-full h-auto swiper-container">
+      <div class="max-w-[30rem] text-left ml-10 mt-4">
+        <h2 class="mb-4 text-[30px] font-black">{{ section.settings.custom_heading }}</h2>
+        <a href="#" class="inline-block mt-8 py-3 px-6 bg-black text-white uppercase text-sm font-thin no-underline tracking-wide cursor-pointer hover:bg-gray-800">
+          Shop Now
+        </a>
+      </div>
+
+      <div class="swiper-wrapper">
+        <!-- Slide 1 -->
+        <div class="swiper-slide flex justify-center items-center w-full">
+          <div class="relative w-full">
+            <img src="{{ section.settings.right_image | img_url: 'large' }}" alt="Right Image" class="w-full h-auto object-cover" />
+            <div class="absolute bottom-5 right-5 bg-white p-2 shadow-sm">
+              <img src="{{ section.settings.product_image | img_url: 'small' }}" alt="Product Image" class="w-12 h-12 object-cover" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="swiper-slide flex justify-center items-center w-full">
+          <img src="{{ section.settings.left_image | img_url: 'large' }}" alt="Left Image" class="w-full h-auto object-cover" />
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-[30rem] text-left ml-10 mt-4">
+      <p class="text-[1.2rem] leading-[1.5]">
+        At suspendisse augue lectus arcu, accumsan ut sit posuere vitae sit tincidunt semper eu proin leo gravida cursus.
+      </p>
+      <a href="#" class="underline text-black">Read More</a>
+    </div>
+  </div>
+</section>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var swiper = new Swiper('.swiper-container', {
+        loop: true,
+        pagination: false,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        slidesPerView: 1,
+        spaceBetween: 10,
+    });
+});
+</script>
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+{% schema %}
+{
+   "name": "Custom Liquid Section",
+   "settings": [
+     {
+       "type": "text",
+       "id": "custom_heading",
+       "label": "Heading",
+       "default": "Smarten up your work look or throw on a blazer with jeans for the weekend"
+     },
+     {
+       "type": "image_picker",
+       "id": "left_image",
+       "label": "Left Image"
+     },
+     {
+       "type": "image_picker",
+       "id": "right_image",
+       "label": "Right Image"
+     },
+     {
+       "type": "image_picker",
+       "id": "product_image",
+       "label": "Overlay"
+     },
+     {
+       "type": "text",
+       "id": "product_name",
+       "label": "Product Name",
+       "default": "Saffiano Leather Bag 2005"
+     },
+     {
+       "type": "text",
+       "id": "product_price",
+       "label": "Price",
+       "default": "€199,95"
+     }
+   ],
+   "presets": [
+     {
+       "name": "Shop Section"
+     }
+   ]
+}
+{% endschema %}
