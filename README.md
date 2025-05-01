@@ -9,6 +9,7 @@ ByteCase, Shopify teması olarak Dawn teması üzerine inşa edilmiş, modern ve
 - Ürün renk varyantları arasında geçiş yapabilme (Renk butonlarına tıklayınca ilgili varyantın görseli ve fiyatı görüntülenir)
 - Ürün görsellerine hover yapıldığında büyüme efekti (Görsellerin üzerine gelindiğinde görsel %5 oranında büyüyerek kullanıcı deneyimini iyileştirir)
 - Responsive tasarım ve Swiper.js ile kayar ürün galerileri
+- Modern buton animasyonları (Shop Now butonuna hover yapıldığında soldan sağa doğru slide efekti ile renk geçişi)
 
 ## Kullanılan Teknolojiler
 
