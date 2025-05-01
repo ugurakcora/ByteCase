@@ -700,6 +700,18 @@ html,
   right: 1.5rem;
 }
 
+.bottom-4 {
+  bottom: 1rem;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
+.right-8 {
+  right: 2rem;
+}
+
 .isolate {
   isolation: isolate;
 }
@@ -784,6 +796,11 @@ html,
   margin-bottom: 12px;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .mb-24 {
   margin-bottom: 6rem;
 }
@@ -830,6 +847,22 @@ html,
 
 .mt-9 {
   margin-top: 2.25rem;
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
+}
+
+.mb-16 {
+  margin-bottom: 4rem;
+}
+
+.mb-6 {
+  margin-bottom: 10rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
 }
 
 .box-border {
@@ -967,6 +1000,10 @@ html,
   height: 100%;
 }
 
+.h-\[40px\] {
+  height: 40px;
+}
+
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1011,6 +1048,10 @@ html,
   width: 100%;
 }
 
+.w-\[40px\] {
+  width: 40px;
+}
+
 .max-w-4xl {
   max-width: 56rem;
 }
@@ -1033,6 +1074,18 @@ html,
 
 .max-w-md {
   max-width: 28rem;
+}
+
+.max-w-\[400px\] {
+  max-width: 400px;
+}
+
+.max-w-\[500px\] {
+  max-width: 500px;
+}
+
+.max-w-\[20rem\] {
+  max-width: 20rem;
 }
 
 .flex-1 {
@@ -1620,6 +1673,10 @@ html,
 
 .gap-\[9\.5rem\] {
   gap: 9.5rem;
+}
+
+.gap-16 {
+  gap: 4rem;
 }
 
 .space-x-2 > :not([hidden]) ~ :not([hidden]) {
@@ -2253,6 +2310,10 @@ html,
   padding: 2rem;
 }
 
+.p-16 {
+  padding: 4rem;
+}
+
 .px-1 {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -2286,6 +2347,21 @@ html,
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.py-16 {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+.py-8 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
 }
 
 .text-left {
@@ -2374,6 +2450,10 @@ html,
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
+}
+
+.text-\[40px\] {
+  font-size: 40px;
 }
 
 .font-black {
@@ -3036,11 +3116,6 @@ body {
   background-color: rgb(229 231 235 / var(--tw-bg-opacity, 1));
 }
 
-.hover\:bg-gray-800:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(31 41 55 / var(--tw-bg-opacity, 1));
-}
-
 .hover\:bg-yellow-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(234 179 8 / var(--tw-bg-opacity, 1));
@@ -3174,6 +3249,10 @@ body {
 
   .lg\:flex-nowrap {
     flex-wrap: nowrap;
+  }
+
+  .lg\:p-8 {
+    padding: 2rem;
   }
 
   .lg\:text-black {
