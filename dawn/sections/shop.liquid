@@ -1,3 +1,9 @@
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
 <section class="flex justify-center items-center bg-white text-center lg:p-8 p-16 lg:mt-20">
   <!-- Desktop Version -->
   <div class="hidden lg:flex gap-[9.5rem] w-full max-w-7xl">
@@ -9,14 +15,14 @@
           <div class="absolute inset-0 bg-white transform scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100"></div>
         </a>
       </div>
-      <div>
-        <img src="{{ section.settings.left_image | img_url: 'large' }}" alt="Left Image" class="w-full h-auto object-cover" />
+      <div class="overflow-hidden">
+        <img src="{{ section.settings.left_image | img_url: 'large' }}" alt="Left Image" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out hover:scale-110" />
       </div>
     </div>
 
     <div class="flex flex-col flex-1">
-      <div class="relative">
-        <img src="{{ section.settings.right_image | img_url: 'large' }}" alt="Right Image" class="w-full h-auto object-cover" />
+      <div class="relative overflow-hidden">
+        <img src="{{ section.settings.right_image | img_url: 'large' }}" alt="Right Image" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out hover:scale-110" />
         <div class="absolute right-6 bottom-8 bg-white px-4 py-3 shadow-md text-sm flex items-center gap-3 max-w-[350px] z-20 border border-[#e1e1e1]">
           <div class="text-left">
             <span class="font-bold">{{ section.settings.product_name }}</span><br />
@@ -30,7 +36,7 @@
         <p class="text-[1.5rem] leading-[1.5] mb-4 text-[#121212bf]">
           At suspendisse augue lectus arcu, accumsan ut sit posuere vitae sit tincidunt semper eu proin leo gravida cursus.
         </p>
-        <a href="#" class="underline text-black font-bold">Read More</a>
+        <a href="#" class="underline underline-offset-4 text-black font-bold">Read More</a>
       </div>
     </div>
   </div>
@@ -41,7 +47,7 @@
       <div class="max-w-[20rem] text-left mt-4">
         <h2 class="mb-4 text-[30px] font-black my-[12px]">{{ section.settings.custom_heading }}</h2>
         <a href="#" class="inline-block my-8 py-3 px-6 bg-black text-white uppercase text-sm font-thin no-underline tracking-wide cursor-pointer border border-transparent relative group overflow-hidden">
-          <span class="relative z-10 transition-colors duration-300 group-hover:text-black">Shop Now</span>
+          <span class="relative z-10 transition-colors duration-300 group-hover:text-black">Shop Now <span class="ml-2 text-[1.2rem] align-middle">➔</span></span>
           <div class="absolute inset-0 bg-white transform scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100"></div>
         </a>
       </div>
@@ -49,8 +55,8 @@
       <div class="swiper-wrapper">
         <!-- Slide 1 -->
         <div class="swiper-slide flex justify-center items-center w-full">
-          <div class="relative w-full">
-            <img src="{{ section.settings.right_image | img_url: 'large' }}" alt="Right Image" class="w-full h-auto object-cover" />
+          <div class="relative w-full overflow-hidden">
+            <img src="{{ section.settings.right_image | img_url: 'large' }}" alt="Right Image" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out hover:scale-110" />
             <div class="absolute bottom-5 right-5 bg-white p-2 shadow-sm">
               <img src="{{ section.settings.product_image | img_url: 'small' }}" alt="Product Image" class="w-12 h-12 object-cover" />
             </div>
@@ -58,8 +64,8 @@
         </div>
 
         <!-- Slide 2 -->
-        <div class="swiper-slide flex justify-center items-center w-full">
-          <img src="{{ section.settings.left_image | img_url: 'large' }}" alt="Left Image" class="w-full h-auto object-cover" />
+        <div class="swiper-slide flex justify-center items-center w-full overflow-hidden">
+          <img src="{{ section.settings.left_image | img_url: 'large' }}" alt="Left Image" class="w-full h-auto object-cover transition-transform duration-700 ease-in-out hover:scale-110" />
         </div>
       </div>
     </div>
@@ -68,7 +74,7 @@
       <p class="text-[1.2rem] leading-[1.5] text-[#121212bf] mb-4">
         At suspendisse augue lectus arcu, accumsan ut sit posuere vitae sit tincidunt semper eu proin leo gravida cursus.
       </p>
-      <a href="#" class="underline text-black font-bold">Read More</a>
+      <a href="#" class="underline underline-offset-4 text-black font-bold">Read More</a>
     </div>
   </div>
 </section>
@@ -88,12 +94,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 </script>
-
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
-
-<!-- Swiper JS -->
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 {% schema %}
 {
