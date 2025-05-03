@@ -22,19 +22,20 @@
     
     {% for block in section.blocks %}
       {% if block.type == 'hotspot' %}
-        <div class="absolute cursor-pointer group" 
+        <div class="absolute cursor-pointer hotspot-trigger" 
           style="left: {{ block.settings.x_position }}%; top: {{ block.settings.y_position }}%;"
+          data-hotspot-index="{{ forloop.index0 }}"
           {{ block.shopify_attributes }}>
           <div class="w-6 h-6 bg-yellow-400 rounded-full relative">
             <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
             <span class="animate-pulse absolute -inset-1 rounded-full bg-yellow-300 opacity-75"></span>
           </div>
-          <div class="hidden group-hover:block absolute bg-white p-4 rounded-lg shadow-lg -translate-x-1/2 -translate-y-full -top-4 left-1/2 w-[13rem] z-10">
+          <div class="hotspot-popup absolute bg-white p-4 rounded-lg shadow-lg -translate-x-1/2 -translate-y-full -top-4 left-1/2 w-[13rem] z-10 hidden" data-hotspot-index="{{ forloop.index0 }}">
             {{ block.settings.product.featured_image | image_url: width: 400 | image_tag: 
               class: 'w-full h-32 object-fill rounded-lg mb-3',
               alt: block.settings.product.featured_image.alt | escape
             }}
-            <h3 class="text-lg font-semibold text-gray-800"></h3>{{ block.settings.product.title }}</h3>
+            <h3 class="text-lg font-semibold text-gray-800">{{ block.settings.product.title }}</h3>
             <p class="text-gray-600 my-2">{{ block.settings.product.price | money }}</p>
             <div class="flex gap-2">
               <form method="post" action="/cart/add">
@@ -54,6 +55,33 @@
     {% endfor %}
   </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const triggers = document.querySelectorAll('.hotspot-trigger');
+  const popups = document.querySelectorAll('.hotspot-popup');
+
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const index = trigger.getAttribute('data-hotspot-index');
+      const popup = document.querySelector('.hotspot-popup[data-hotspot-index="' + index + '"]');
+      popups.forEach(p => { if(p !== popup) p.classList.add('hidden'); });
+      popup.classList.toggle('hidden');
+    });
+  });
+
+  document.addEventListener('click', function() {
+    popups.forEach(popup => popup.classList.add('hidden'));
+  });
+
+  popups.forEach(popup => {
+    popup.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  });
+});
+</script>
 
 {% schema %}
 {
