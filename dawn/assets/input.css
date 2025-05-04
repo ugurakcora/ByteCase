@@ -11,7 +11,7 @@
   }
 }
 
-@font-face {
+/*@font-face {
   font-family: 'ITC Avant Garde Gothic W02 Md';
   src: url('https://db.onlinewebfonts.com/t/65dc1b4fb1cd6bf31e730421533dafc7.eot');
   src: url('https://db.onlinewebfonts.com/t/65dc1b4fb1cd6bf31e730421533dafc7.eot?#iefix') format('embedded-opentype'),
@@ -20,9 +20,12 @@
     url('https://db.onlinewebfonts.com/t/65dc1b4fb1cd6bf31e730421533dafc7.ttf') format('truetype'),
     url('https://db.onlinewebfonts.com/t/65dc1b4fb1cd6bf31e730421533dafc7.svg#ITC Avant Garde Gothic W02 Md')
       format('svg');
-}
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@200..800&family=Bungee+Tint&display=swap');
+
 body {
-  font-family: 'ITC Avant Garde Gothic W02 Md';
+  font-family: 'Assistant', sans-serif;
   box-sizing: border-box;
 }
 
@@ -50,4 +53,18 @@ body {
   border: 2px solid #0000001a;
   background-color: none;
   padding: 15px;
+}
+
+@keyframes ping {
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.5;
+  }
 }
